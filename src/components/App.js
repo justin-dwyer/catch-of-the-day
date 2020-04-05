@@ -14,10 +14,7 @@ class App extends React.Component {
     // 2. Add our new fish to that fishes variable
     fishes[`fish${Date.now()}`] = fish;
     // 3. Set the new fishes object to state
-    this.setState({
-      // ES6 lets you pass your property and its value as one variable if they're the same thing
-      fishes
-    });
+    this.setState({ fishes });
   };
   render() {
     return (
