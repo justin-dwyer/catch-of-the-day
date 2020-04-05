@@ -16,7 +16,7 @@ class App extends React.Component {
     // 3. Set the new fishes object to state
     this.setState({
       // ES6 lets you pass your property and its value as one variable if they're the same thing
-      fishes: fishes
+      fishes
     });
   };
   render() {
