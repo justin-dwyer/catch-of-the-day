@@ -9,11 +9,15 @@ class App extends React.Component {
     order: {}
   };
   addFish = fish => {
-    // The below methods won't work in React
-    // Use the React setState API
-    // You don't want to reach into state and modify it directly (called a mutation)
-    this.state.fishes.push(fish);
-    this.state.fishes.fish1 = fish;
+    // 1. Take a copy of the existing state
+    const fishes = { ...this.state.fishes };
+    // 2. Add our new fish to that fishes variable
+    fishes[`fish${Date.now()}`] = fish;
+    // 3. Set the new fishes object to state
+    this.setState({
+      // ES6 lets you pass your property and its value as one variable if they're the same thing
+      fishes: fishes
+    });
   };
   render() {
     return (
