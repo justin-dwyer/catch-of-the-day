@@ -20,6 +20,13 @@ export function slugify(text) {
     .replace(/-+$/, "");
 }
 
+export function properify(text) {
+  return text
+    .charAt(0)
+    .toUpperCase() +
+    text.slice(1);
+}
+
 export function getFunName() {
   const adjectives = [
     "adorable",
@@ -93,5 +100,5 @@ export function getFunName() {
     "data"
   ];
 
-  return `${rando(adjectives)}-${rando(adjectives)}-${rando(nouns)}`;
+  return `${properify(rando(adjectives))} ${properify(rando(adjectives))} ${properify(rando(nouns))}`;
 }
