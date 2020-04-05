@@ -2,12 +2,15 @@ import React from 'react';
 import Header from './Header';
 import Order from './Order';
 import Inventory from './Inventory';
+import fishes from '../sample-fishes';
+import Fish from './Fish';
 
 class App extends React.Component {
   state = {
     fishes: {},
     order: {}
   };
+
   addFish = fish => {
     // 1. Take a copy of the existing state
     const fishes = { ...this.state.fishes };
@@ -16,14 +19,22 @@ class App extends React.Component {
     // 3. Set the new fishes object to state
     this.setState({ fishes });
   };
+
+  loadSampleFishes = () => {
+    this.setState({ fishes });
+  };
+
   render() {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
           <Header tagline="Fresh Seafood Market" storeId={this.props.match.params.storeId} />
+          <ul className="fishes">
+            <Fish fish={this.state.fishes["fish1"]} />
+          </ul>
         </div>
         <Order />
-        <Inventory addFish={this.addFish} />
+        <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
       </div>
     )
   }
