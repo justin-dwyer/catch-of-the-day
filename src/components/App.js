@@ -24,7 +24,6 @@ class App extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.order);
     localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order));
   }
 
@@ -71,6 +70,8 @@ class App extends React.Component {
   }
 
   deleteFromOrder = key => {
+    console.log(JSON.parse(localStorage.getItem(this.props.match.params.storeId)));
+    console.log(localStorage.getItem(this.props.match.params.storeId));
     const order = { ...this.state.order };
     order[key] -= 1
     order[key] = order[key] < 1 ? null : order[key];
