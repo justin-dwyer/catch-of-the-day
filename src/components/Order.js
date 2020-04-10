@@ -7,14 +7,21 @@ class Order extends React.Component {
     const count = this.props.order[key];
     const isAvailable = fish && fish.status === 'available';
     // Make sure fish loads from firebase storage so localStorage doesn't eff things up
-    if(!fish) return <p key={key}>Loading...</p>;
+    if(!fish) return <li key={key}>
+      Sorry, this fish is no longer available.
+      <button onClick={() => this.props.deleteFromOrder(key)}>&times;</button>
+    </li>;
     if (!isAvailable) {
-      return <li key={key}>Sorry, {fish ? fish.name : 'that fish'} is no longer available.</li>;
+      return <li key={key}>
+        Sorry, {fish ? fish.name : 'that fish'} is no longer available.
+        <button onClick={() => this.props.deleteFromOrder(key)}>&times;</button>
+      </li>;
     }
     return (
       <li key={key}>
         {count} lbs. {fish.name}
         {formatPrice(count * fish.price)}
+        <button onClick={() => this.props.deleteFromOrder(key)}>&times;</button>
       </li>
     );
   }

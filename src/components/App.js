@@ -53,7 +53,7 @@ class App extends React.Component {
     // 2. update the state (setting it null is a Firebase requirement)
     fishes[key] = null;
     // 3. update state
-    this.setState({ fishes });
+    this.setState({ fishes }, this.deleteFromOrder(key));
   }
 
   loadSampleFishes = () => {
@@ -61,21 +61,19 @@ class App extends React.Component {
   };
 
   addToOrder = key => {
-    console.log(key)
     // 1. Take a copy of state
     const order = { ...this.state.order };
     // 2. Add to order or update number in order
-    console.log(order[key])
     order[key] = order[key] + 1 || 1;
-    console.log(order[key])
     // 3. Call setState to update state object
     this.setState({ order });
   }
 
   deleteFromOrder = key => {
     const order = { ...this.state.order };
+    const fishes = { ...this.state.fishes };
     order[key] -= 1;
-    if(order[key] < 1) delete order[key];
+    if(order[key] < 1 || !fishes[key]) delete order[key];
     this.setState({ order });
   }
 
@@ -98,6 +96,7 @@ class App extends React.Component {
         <Order
           fishes={this.state.fishes}
           order={this.state.order}
+          deleteFromOrder={this.deleteFromOrder}
         />
         <Inventory
           fishes = {this.state.fishes}
