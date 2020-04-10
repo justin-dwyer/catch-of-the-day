@@ -42,6 +42,21 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
+  updateFish = (key, updatedFish) => {
+    const fishes = { ...this.state.fishes };
+    fishes[key] = updatedFish;
+    this.setState({ fishes });
+  }
+
+  deleteFish = key => {
+    // 1. take a copy of state (could just use .filter if it's in array)
+    const fishes = { ...this.state.fishes };
+    // 2. update the state (setting it null is a Firebase requirement)
+    fishes[key] = null;
+    // 3. update state
+    this.setState({ fishes });
+  }
+
   loadSampleFishes = () => {
     this.setState({ fishes });
   };
@@ -53,12 +68,6 @@ class App extends React.Component {
     order[key] = order[key] + 1 || 1;
     // 3. Call setState to update state object
     this.setState({ order });
-  }
-
-  updateFish = (key, updatedFish) => {
-    const fishes = { ...this.state.fishes };
-    fishes[key] = updatedFish;
-    this.setState({ fishes });
   }
 
   render() {
@@ -86,6 +95,7 @@ class App extends React.Component {
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
           updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
         />
       </div>
     )
