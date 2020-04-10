@@ -4,12 +4,34 @@ import Order from './Order';
 import Inventory from './Inventory';
 import fishes from '../sample-fishes';
 import Fish from './Fish';
+import base from '../base.js';
 
 class App extends React.Component {
   state = {
     fishes: {},
     order: {}
   };
+
+  componentDidMount() {
+    const { params } = this.props.match;
+    // Reinstate localStorage
+    const localStorageRef = localStorage.getItem(params.storeId);
+    if (localStorageRef) this.setState({ order: JSON.parse(localStorageRef)})
+    this.ref = base.syncState(`${params.storeId}/fishes`, {
+      context: this,
+      state: 'fishes'
+    });
+  }
+
+  componentDidUpdate() {
+    console.log(this.state.order);
+    localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order));
+  }
+
+  // Tell Firebase to stop listening to prevent memory leaks
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
   addFish = fish => {
     // 1. Take a copy of the existing state
@@ -54,6 +76,7 @@ class App extends React.Component {
           order={this.state.order}
         />
         <Inventory
+          fishes = {this.state.fishes}
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
         />

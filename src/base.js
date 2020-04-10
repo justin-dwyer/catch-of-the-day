@@ -10,7 +10,7 @@ const firebaseApp = firebase.initializeApp({
   messagingSenderId: "218125804298",
   appId: "1:218125804298:web:318eaa20b5f1f563fd10f3",
   measurementId: "G-0X79W4QMPD"
-})
+});
 
 const base = Rebase.createClass(firebaseApp.database());
 
