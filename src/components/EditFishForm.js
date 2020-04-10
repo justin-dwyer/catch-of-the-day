@@ -4,7 +4,7 @@ class EditFishFrom extends React.Component {
   handleChange = event => {
     const index = this.props.index;
     const value = event.currentTarget.value;
-    this.props.updateFish(value, index).bind();
+    this.props.updateFish(value, index);
   }
   render() {
     return (

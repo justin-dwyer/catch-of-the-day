@@ -57,10 +57,10 @@ class App extends React.Component {
 
   // Define the function where the state lives
   // Pass the funciton as a prop to where the data will be updated
-  updateFish = fish => {
+  updateFish = (fish, index) => {
     const fishes = { ...this.state.fishes };
-    fishes[this] = fish;
-    this.setState({ fishes })
+    fishes[index] = fish;
+    this.setState({ fishes });
   }
 
   render() {
