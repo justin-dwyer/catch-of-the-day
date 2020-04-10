@@ -2,7 +2,9 @@ import React from 'react';
 
 class EditFishFrom extends React.Component {
   handleChange = event => {
-    console.log(event.currentTarget.value);
+    const index = this.props.index;
+    const value = event.currentTarget.value;
+    this.props.updateFish(value, index).bind();
   }
   render() {
     return (
