@@ -61,20 +61,21 @@ class App extends React.Component {
   };
 
   addToOrder = key => {
+    console.log(key)
     // 1. Take a copy of state
     const order = { ...this.state.order };
     // 2. Add to order or update number in order
+    console.log(order[key])
     order[key] = order[key] + 1 || 1;
+    console.log(order[key])
     // 3. Call setState to update state object
     this.setState({ order });
   }
 
   deleteFromOrder = key => {
     const order = { ...this.state.order };
-    order[key] -= 1
-    order[key] = order[key] < 1
-      ? delete order[key]
-      : order[key];
+    order[key] -= 1;
+    if(order[key] < 1) delete order[key];
     this.setState({ order });
   }
 
