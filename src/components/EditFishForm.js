@@ -3,8 +3,8 @@ import React from 'react';
 class EditFishFrom extends React.Component {
   handleChange = event => {
     const index = this.props.index;
-    const value = event.currentTarget.value;
-    this.props.updateFish(value, index);
+    const fish = event.currentTarget;
+    this.props.updateFish(fish, index);
   }
   render() {
     return (
