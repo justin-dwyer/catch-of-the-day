@@ -55,6 +55,13 @@ class App extends React.Component {
     this.setState({ order });
   }
 
+  // Define the function where the state lives
+  // Pass the funciton as a prop to where the data will be updated
+  updateFish = fish => {
+    const fishes = { ...this.state.fishes };
+
+  }
+
   render() {
     return (
       <div className="catch-of-the-day">
@@ -79,6 +86,7 @@ class App extends React.Component {
           fishes = {this.state.fishes}
           addFish={this.addFish}
           loadSampleFishes={this.loadSampleFishes}
+          updateFish={this.updateFish}
         />
       </div>
     )
