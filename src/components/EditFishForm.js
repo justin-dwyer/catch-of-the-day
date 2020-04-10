@@ -6,7 +6,9 @@ class EditFishFrom extends React.Component {
       ...this.props.fish,
       [event.currentTarget.name]: event.currentTarget.value
     };
-    // const index = this.props.index;
+    console.log(updatedFish);
+    const key = this.props.index;
+    this.props.updateFish(key, updatedFish);
     // const fish = event.currentTarget;
     // this.props.updateFish(fish, index);
   }
