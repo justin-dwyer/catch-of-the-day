@@ -70,6 +70,13 @@ class App extends React.Component {
     this.setState({ order });
   }
 
+  deleteFromOrder = key => {
+    const order = { ...this.state.order };
+    order[key] -= 1
+    order[key] = order[key] < 1 ? null : order[key];
+    this.setState({ order });
+  }
+
   render() {
     return (
       <div className="catch-of-the-day">
