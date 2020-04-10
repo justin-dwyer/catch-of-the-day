@@ -73,7 +73,7 @@ class App extends React.Component {
     const order = { ...this.state.order };
     order[key] -= 1
     order[key] = order[key] < 1
-      ? localStorage.removeItem(JSON.parse(localStorage.getItem(this.props.match.params.storeId))[key])
+      ? delete order[key]
       : order[key];
     this.setState({ order });
   }
