@@ -11,14 +11,13 @@ const Header = props => (
         Day
       </h1>
       <h3 className="tagline">
-        <span>{props.tagline}</span>
-        <span>{props.storeId}</span>
+        <span>{props.storeName}</span>
       </h3>
     </header>
 );
 
 Header.propTypes = {
-  tagline: PropTypes.string.isRequired
+  storeName: PropTypes.string.isRequired
 }
 
 export default Header;
